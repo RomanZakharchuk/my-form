@@ -4,7 +4,7 @@ import "./App.css";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", password_one: "", password_two: "" };
+    this.state = { name: "", email: "", passwordOne: "", passwordTwo: "" };
 
     this.onChangePassOne = this.onChangePassOne.bind(this);
     this.onChangePassTwo = this.onChangePassTwo.bind(this);
@@ -17,7 +17,7 @@ class App extends React.Component {
     alert(`Your Name:  ${this.state.name}
     Your Email: ${this.state.email}`);
 
-    if (`${this.state.password_one}` != `${this.state.password_two}`) {
+    if (`${this.state.passwordOne}` !== `${this.state.passwordTwo}`) {
       alert("Your password incorrect!");
     } else {
       alert("Congratulations!");
@@ -26,11 +26,11 @@ class App extends React.Component {
   }
 
   onChangePassOne = (event) => {
-    this.setState({ password1: event.target.value });
+    this.setState({ passwordOne: event.target.value });
   };
 
   onChangePassTwo = (event) => {
-    this.setState({ password2: event.target.value });
+    this.setState({ passwordTwo: event.target.value });
   };
 
   onChangeEmail = (event) => {
@@ -69,7 +69,7 @@ class App extends React.Component {
             Password:
             <input
               type="password"
-              name="password_one"
+              name="passwordOne"
               value={this.state.value}
               onChange={this.onChangePassOne}
             />
@@ -79,7 +79,7 @@ class App extends React.Component {
             Password:
             <input
               type="password"
-              name="password_two"
+              name="passwordTwo"
               value={this.state.value}
               onChange={this.onChangePassTwo}
             />
