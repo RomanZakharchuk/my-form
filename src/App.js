@@ -1,95 +1,80 @@
 import React from "react";
-import "./App.css";
+import MyLabel from "./components/form";
+import styled from 'styled-components';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", passwordOne: "", passwordTwo: "" };
 
-    this.onChangePassOne = this.onChangePassOne.bind(this);
-    this.onChangePassTwo = this.onChangePassTwo.bind(this);
-    this.onChangeName = this.onChangeName.bind(this);
-    this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.state = { name: '', email: '', passwordFirst: '', passwordSecond: '' };
+
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  onSubmit(event) {
-    alert(`Your Name:  ${this.state.name}
-    Your Email: ${this.state.email}`);
 
-    if (`${this.state.passwordOne}` !== `${this.state.passwordTwo}`) {
-      alert("Your password incorrect!");
+
+  handleFormSubmit() {
+    let name = this.state.name;
+    let email = this.state.email;
+    let pass1 = this.state.passwordFirst;
+    let pass2 = this.state.passwordSecond;
+
+    alert(`Your Name: ${name}` + `Your Email: ${email}`);
+
+    if (pass1 != pass2) {
+      alert('Error!');
     } else {
-      alert("Congratulations!");
+      alert('Congratulations!');
     }
-    event.preventDefault();
   }
 
-  onChangePassOne = (event) => {
-    this.setState({ passwordOne: event.target.value });
-  };
-
-  onChangePassTwo = (event) => {
-    this.setState({ passwordTwo: event.target.value });
-  };
-
-  onChangeEmail = (event) => {
-    this.setState({ email: event.target.value });
-  };
-
-  onChangeName = (event) => {
+  onName = (event) => {
     this.setState({ name: event.target.value });
-  };
+  }
+  onEmail = (event) => {
+    this.setState({ email: event.target.value });
+  }
+  onPassOne = (event) => {
+    this.setState({ passwordFirst: event.target.value });
+  }
+  onPassTwo = (event) => {
+    this.setState({ passwordSecond: event.target.value });
+  }
 
   render() {
     return (
-      <div className="forms">
-        <form onSubmit={this.onSubmit}>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={this.state.value}
-              onChange={this.onChangeName}
-            />
-          </label>
-          <br />
-          <label>
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={this.state.value}
-              onChange={this.onChangeEmail}
-            />
-          </label>
-          <br />
-          <label>
-            Password:
-            <input
-              type="password"
-              name="passwordOne"
-              value={this.state.value}
-              onChange={this.onChangePassOne}
-            />
-          </label>
-          <br />
-          <label>
-            Password:
-            <input
-              type="password"
-              name="passwordTwo"
-              value={this.state.value}
-              onChange={this.onChangePassTwo}
-            />
-          </label>
-          <br />
-          <input type="submit" value="Send" />
-        </form>
-      </div>
+      <BigBox>
+        <Form onSubmit={this.handleFormSubmit}>
+          <MyLabel type="name" name="name" text="Name:" value={this.state.value} onChange={this.onName} />
+          <MyLabel type="email" name="email" text="Email:" value={this.state.value} onChange={this.onEmail} />
+          <MyLabel type="password" name="passwordFirst" text="Password:" value={this.state.value} onChange={this.onPassOne} />
+          <MyLabel type="password" name="passwordSecond" text="Password:" value={this.state.value} onChange={this.onPassTwo} />
+          <input type="submit" value="Submit" />
+        </Form>
+      </BigBox>
     );
   }
 }
+
+
+
+const BigBox = styled.div`
+  margin: auto;
+  width: 500px;
+  height: 350px;
+  background-color: aquamarine;
+  border: 1px solid blueviolet;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Form = styled.form`
+padding: 5px;
+max-width: 250px;
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+`;
 
 export default App;
