@@ -14,14 +14,11 @@ class App extends React.Component {
 
 
   handleFormSubmit() {
-    let name = this.state.name;
-    let email = this.state.email;
-    let pass1 = this.state.passwordFirst;
-    let pass2 = this.state.passwordSecond;
+    const { name, email, passwordFirst, passwordSecond } = this.state;
 
     alert(`Your Name: ${name}` + `Your Email: ${email}`);
 
-    if (pass1 != pass2) {
+    if (passwordFirst != passwordSecond) {
       alert('Error!');
     } else {
       alert('Congratulations!');
